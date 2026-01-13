@@ -1,0 +1,6 @@
+update tarif_tp set kelas_cd = null where kelas_cd = ''
+update tarif_tindakan set kelas_cd = null where kelas_cd = ''
+
+ALTER TABLE `rm_inap_gizi`
+ADD COLUMN `diagnosa`  longtext NULL AFTER `jam_makan_spesifik`;
+

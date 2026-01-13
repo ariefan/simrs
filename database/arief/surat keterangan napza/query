@@ -1,0 +1,57 @@
+
+DROP TABLE IF EXISTS `jenis_periksa_lab`;
+
+CREATE TABLE `jenis_periksa_lab` (
+  `periksa_id` int(11) NOT NULL AUTO_INCREMENT,
+  `periksa_nama` varchar(500) DEFAULT NULL,
+  `periksa_group` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`periksa_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+/*Data for the table `jenis_periksa_lab` */
+
+insert  into `jenis_periksa_lab`(`periksa_id`,`periksa_nama`,`periksa_group`) values (1,'Amphetamine','NAPZA'),(2,'Tetra Hidro Cannabiol (Mariyuana)','NAPZA'),(3,'Morphine','NAPZA'),(4,'Benzodazepine','NAPZA'),(5,'Methamphetamine','NAPZA');
+
+/*Table structure for table `rm_lab_napza` */
+
+DROP TABLE IF EXISTS `rm_lab_napza`;
+
+CREATE TABLE `rm_lab_napza` (
+  `lab_napza_id` int(11) NOT NULL AUTO_INCREMENT,
+  `rm_id` bigint(11) DEFAULT NULL,
+  `nomor_surat` varchar(255) DEFAULT NULL,
+  `tanggal_surat` date DEFAULT NULL,
+  `permintaan` varchar(255) DEFAULT NULL,
+  `keperluan` text DEFAULT NULL,
+  `tanggal_periksa` datetime DEFAULT NULL,
+  `created` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`lab_napza_id`),
+  KEY `rm_id` (`rm_id`),
+  CONSTRAINT `rm_lab_napza_ibfk_1` FOREIGN KEY (`rm_id`) REFERENCES `rekam_medis` (`rm_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `rm_lab_napza` */
+
+/*Table structure for table `rm_lab_napza_detail` */
+
+DROP TABLE IF EXISTS `rm_lab_napza_detail`;
+
+CREATE TABLE `rm_lab_napza_detail` (
+  `napza_detail_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `lab_napza_id` int(11) DEFAULT NULL,
+  `periksa_id` int(11) DEFAULT NULL,
+  `hasil` varchar(500)menu DEFAULT 'NEGATIF',
+  PRIMARY KEY (`napza_detail_id`),
+  KEY `lab_napza_id` (`lab_napza_id`),
+  KEY `periksa_id` (`periksa_id`),
+  CONSTRAINT `rm_lab_napza_detail_ibfk_1` FOREIGN KEY (`lab_napza_id`) REFERENCES `rm_lab_napza` (`lab_napza_id`),
+  CONSTRAINT `rm_lab_napza_detail_ibfk_2` FOREIGN KEY (`periksa_id`) REFERENCES `jenis_periksa_lab` (`periksa_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `menu` (`menu_id`, `menu_root`, `menu_nama`, `menu_icon`, `menu_order`, `menu_route`) VALUES (53, 4, 'Laboratorium', 'heartbeat', 7, 'jenis-periksa-lab/index');
+INSERT INTO `menu` (`menu_id`, `menu_root`, `menu_nama`, `menu_icon`, `menu_order`, `menu_route`) VALUES (54, 0, 'Surat Keterangan', 'sticky-note-o', 1, NULL);
+INSERT INTO `menu` (`menu_id`, `menu_root`, `menu_nama`, `menu_icon`, `menu_order`, `menu_route`) VALUES (55, 54, 'Bebas Napza', 'file-text-o', 1, 'kunjungan/list-bebas-napza');
+
+INSERT INTO `menu_akses` (`menu_id`, `role`) VALUES (53, 10);
+INSERT INTO `menu_akses` (`menu_id`, `role`) VALUES (54, 15);
+INSERT INTO `menu_akses` (`menu_id`, `role`) VALUES (55, 15);

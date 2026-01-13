@@ -1,0 +1,4 @@
+ALTER TABLE `rm_tindakan`
+ADD COLUMN `user_id`  int NULL AFTER `nama_tindakan`,
+ADD COLUMN `created_by`  int NULL AFTER `user_id`;
+

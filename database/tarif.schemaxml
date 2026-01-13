@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemadesigner version="6.5">
+<source>
+<database charset="latin1" collation="latin1_swedish_ci">rsberau</database>
+</source>
+<canvas zoom="100">
+<tables>
+<table name="tarif_general" view="colnames">
+<left>233</left>
+<top>354</top>
+<width>131</width>
+<height>248</height>
+<sql_create_table>CREATE TABLE `tarif_general` (
+  `tarif_general_id` int(11) NOT NULL AUTO_INCREMENT,
+  `tarif_nm` varchar(100) DEFAULT NULL,
+  `insurance_cd` varchar(20) DEFAULT NULL,
+  `kelas_cd` varchar(20) DEFAULT NULL,
+  `tarif` decimal(15,0) DEFAULT NULL,
+  `auto_add` char(1) DEFAULT NULL,
+  `medical_tp` varchar(20) DEFAULT NULL,
+  `account_cd` varchar(20) DEFAULT NULL,
+  `modi_id` varchar(20) DEFAULT NULL,
+  `modi_datetime` datetime DEFAULT NULL,
+  PRIMARY KEY (`tarif_general_id`),
+  KEY `account_cd` (`account_cd`),
+  KEY `kelas_cd` (`kelas_cd`),
+  KEY `insurance_cd` (`insurance_cd`),
+  CONSTRAINT `tarif_general_ibfk_3` FOREIGN KEY (`insurance_cd`) REFERENCES `asuransi` (`insurance_cd`),
+  CONSTRAINT `tarif_general_ibfk_1` FOREIGN KEY (`account_cd`) REFERENCES `account` (`account_cd`),
+  CONSTRAINT `tarif_general_ibfk_2` FOREIGN KEY (`kelas_cd`) REFERENCES `kelas` (`kelas_cd`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="tarif_inventori" view="colnames">
+<left>816</left>
+<top>154</top>
+<width>131</width>
+<height>214</height>
+<sql_create_table>CREATE TABLE `tarif_inventori` (
+  `seq_no` bigint(20) NOT NULL,
+  `insurance_cd` varchar(20) DEFAULT NULL,
+  `kelas_cd` varchar(20) DEFAULT NULL,
+  `item_cd` varchar(20) DEFAULT NULL,
+  `tarif` decimal(15,0) DEFAULT NULL,
+  `account_cd` varchar(20) DEFAULT NULL,
+  `modi_id` varchar(20) DEFAULT NULL,
+  `modi_datetime` datetime DEFAULT NULL,
+  PRIMARY KEY (`seq_no`),
+  KEY `kelas_cd` (`kelas_cd`),
+  KEY `item_cd` (`item_cd`),
+  CONSTRAINT `tarif_inventori_ibfk_2` FOREIGN KEY (`item_cd`) REFERENCES `inv_item_master` (`item_cd`),
+  CONSTRAINT `tarif_inventori_ibfk_1` FOREIGN KEY (`kelas_cd`) REFERENCES `kelas` (`kelas_cd`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="tarif_kelas" view="colnames">
+<left>245</left>
+<top>33</top>
+<width>131</width>
+<height>197</height>
+<sql_create_table>CREATE TABLE `tarif_kelas` (
+  `seq_no` bigint(20) NOT NULL,
+  `insurance_cd` varchar(20) DEFAULT NULL,
+  `kelas_cd` varchar(20) DEFAULT NULL,
+  `tarif` decimal(15,0) DEFAULT NULL,
+  `account_cd` varchar(20) DEFAULT NULL,
+  `modi_id` varchar(20) DEFAULT NULL,
+  `modi_datetime` datetime DEFAULT NULL,
+  PRIMARY KEY (`seq_no`),
+  KEY `kelas_cd` (`kelas_cd`),
+  CONSTRAINT `tarif_kelas_ibfk_1` FOREIGN KEY (`kelas_cd`) REFERENCES `kelas` (`kelas_cd`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="tarif_paramedis" view="colnames">
+<left>7</left>
+<top>213</top>
+<width>149</width>
+<height>231</height>
+<sql_create_table>CREATE TABLE `tarif_paramedis` (
+  `seq_no` bigint(20) NOT NULL,
+  `insurance_cd` varchar(20) DEFAULT NULL,
+  `kelas_cd` varchar(20) DEFAULT NULL,
+  `specialis_cd` varchar(20) DEFAULT NULL,
+  `paramedis_tp` varchar(20) DEFAULT NULL,
+  `tarif` decimal(15,0) DEFAULT NULL,
+  `account_cd` varchar(20) DEFAULT NULL,
+  `modi_id` varchar(20) DEFAULT NULL,
+  `modi_datetime` datetime DEFAULT NULL,
+  PRIMARY KEY (`seq_no`),
+  KEY `kelas_cd` (`kelas_cd`),
+  CONSTRAINT `tarif_paramedis_ibfk_1` FOREIGN KEY (`kelas_cd`) REFERENCES `kelas` (`kelas_cd`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="tarif_tindakan" view="colnames">
+<left>640</left>
+<top>2</top>
+<width>131</width>
+<height>214</height>
+<sql_create_table>CREATE TABLE `tarif_tindakan` (
+  `tarif_tindakan_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `insurance_cd` varchar(20) DEFAULT NULL,
+  `kelas_cd` varchar(20) DEFAULT NULL,
+  `treatment_cd` varchar(20) DEFAULT NULL,
+  `tarif` decimal(15,0) DEFAULT NULL,
+  `account_cd` varchar(20) DEFAULT NULL,
+  `modi_id` varchar(20) DEFAULT NULL,
+  `modi_datetime` datetime DEFAULT NULL,
+  PRIMARY KEY (`tarif_tindakan_id`),
+  KEY `treatment_cd` (`treatment_cd`),
+  CONSTRAINT `tarif_tindakan_ibfk_1` FOREIGN KEY (`treatment_cd`) REFERENCES `tindakan` (`tindakan_cd`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="tarif_tp" view="colnames">
+<left>569</left>
+<top>283</top>
+<width>133</width>
+<height>231</height>
+<sql_create_table>CREATE TABLE `tarif_tp` (
+  `tariftp_no` bigint(20) NOT NULL,
+  `tariftp_nm` text,
+  `insurance_cd` varchar(20) DEFAULT NULL,
+  `kelas_cd` varchar(20) DEFAULT NULL,
+  `tarif_total` decimal(15,0) DEFAULT NULL,
+  `trx_tarif_seqno` bigint(20) DEFAULT NULL,
+  `modi_id` varchar(20) DEFAULT NULL,
+  `tarif_tp` varchar(20) DEFAULT NULL,
+  `modi_datetime` datetime DEFAULT NULL,
+  PRIMARY KEY (`tariftp_no`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="tarif_unitmedis" view="colnames">
+<left>696</left>
+<top>480</top>
+<width>159</width>
+<height>214</height>
+<sql_create_table>CREATE TABLE `tarif_unitmedis` (
+  `seq_no` bigint(20) NOT NULL,
+  `insurance_cd` varchar(20) DEFAULT NULL,
+  `kelas_cd` varchar(20) DEFAULT NULL,
+  `medicalunit_cd` varchar(20) DEFAULT NULL,
+  `tarif` decimal(15,0) DEFAULT NULL,
+  `account_cd` varchar(20) DEFAULT NULL,
+  `modi_id` varchar(20) DEFAULT NULL,
+  `modi_datetime` datetime DEFAULT NULL,
+  PRIMARY KEY (`seq_no`),
+  KEY `medicalunit_cd` (`medicalunit_cd`),
+  CONSTRAINT `tarif_unitmedis_ibfk_1` FOREIGN KEY (`medicalunit_cd`) REFERENCES `unit_medis_item` (`medicalunit_cd`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="tindakan" view="colnames">
+<left>436</left>
+<top>41</top>
+<width>134</width>
+<height>214</height>
+<sql_create_table>CREATE TABLE `tindakan` (
+  `tindakan_cd` varchar(11) NOT NULL,
+  `tindakan_root` varchar(11) DEFAULT NULL,
+  `klinik_id` int(11) DEFAULT NULL,
+  `nama_tindakan` varchar(500) DEFAULT NULL,
+  `total_tarif` int(11) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `modified` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `biaya_wajib` tinyint(1) DEFAULT '0',
+  PRIMARY KEY (`tindakan_cd`),
+  KEY `tindakan_klinik_fk` (`klinik_id`),
+  CONSTRAINT `tindakan_klinik_fk` FOREIGN KEY (`klinik_id`) REFERENCES `klinik` (`klinik_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="account" view="colnames">
+<left>12</left>
+<top>461</top>
+<width>135</width>
+<height>180</height>
+<sql_create_table>CREATE TABLE `account` (
+  `account_cd` varchar(20) NOT NULL,
+  `accgroup_cd` varchar(20) DEFAULT NULL,
+  `account_nm` varchar(100) DEFAULT NULL,
+  `default_amount` decimal(15,0) DEFAULT NULL,
+  `order_no` int(11) DEFAULT NULL,
+  `print_single_st` char(1) DEFAULT NULL,
+  PRIMARY KEY (`account_cd`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="kelas" view="colnames">
+<left>42</left>
+<top>87</top>
+<width>101</width>
+<height>112</height>
+<sql_create_table>CREATE TABLE `kelas` (
+  `kelas_cd` varchar(20) NOT NULL,
+  `kelas_nm` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`kelas_cd`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="asuransi" view="colnames">
+<left>405</left>
+<top>451</top>
+<width>126</width>
+<height>112</height>
+<sql_create_table>CREATE TABLE `asuransi` (
+  `insurance_cd` varchar(20) NOT NULL,
+  `insurance_nm` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`insurance_cd`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="tarif_tp_item" view="colnames">
+<left>964</left>
+<top>404</top>
+<width>133</width>
+<height>231</height>
+<sql_create_table>CREATE TABLE `tarif_tp_item` (
+  `tariftp_no` bigint(20) NOT NULL,
+  `seq_no` bigint(20) NOT NULL,
+  `item_nm` text,
+  `tarif_tp` varchar(20) DEFAULT NULL,
+  `trx_tarif_seqno` int(11) DEFAULT NULL,
+  `tarif_item` decimal(15,0) DEFAULT NULL,
+  `quantity` decimal(10,2) DEFAULT NULL,
+  `modi_id` varchar(20) DEFAULT NULL,
+  `modi_datetime` datetime DEFAULT NULL,
+  PRIMARY KEY (`seq_no`),
+  KEY `tariftp_no` (`tariftp_no`),
+  CONSTRAINT `tarif_tp_item_ibfk_1` FOREIGN KEY (`tariftp_no`) REFERENCES `tarif_tp` (`tariftp_no`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="unit_medis" view="colnames">
+<left>548</left>
+<top>700</top>
+<width>117</width>
+<height>129</height>
+<sql_create_table>CREATE TABLE `unit_medis` (
+  `medunit_cd` varchar(20) NOT NULL,
+  `medunit_nm` varchar(100) DEFAULT NULL,
+  `medunit_tp` enum('Poliklinik','Laboratorium','Radiologi') DEFAULT NULL,
+  PRIMARY KEY (`medunit_cd`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="unit_medis_item" view="colnames">
+<left>922</left>
+<top>672</top>
+<width>141</width>
+<height>214</height>
+<sql_create_table>CREATE TABLE `unit_medis_item` (
+  `medicalunit_cd` varchar(20) NOT NULL,
+  `medunit_cd` varchar(20) NOT NULL,
+  `medicalunit_root` varchar(20) DEFAULT NULL,
+  `medicalunit_nm` varchar(100) DEFAULT NULL,
+  `root_st` char(1) DEFAULT NULL,
+  `file_format` varchar(100) DEFAULT NULL,
+  `modi_id` varchar(20) DEFAULT NULL,
+  `modi_datetime` datetime DEFAULT NULL,
+  PRIMARY KEY (`medicalunit_cd`),
+  KEY `medunit_cd` (`medunit_cd`),
+  CONSTRAINT `unit_medis_item_ibfk_1` FOREIGN KEY (`medunit_cd`) REFERENCES `unit_medis` (`medunit_cd`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="inv_item_master" view="colnames">
+<left>1101</left>
+<top>112</top>
+<width>140</width>
+<height>311</height>
+<sql_create_table>CREATE TABLE `inv_item_master` (
+  `item_cd` varchar(20) NOT NULL,
+  `type_cd` varchar(20) NOT NULL,
+  `unit_cd` varchar(20) NOT NULL,
+  `item_nm` varchar(100) DEFAULT NULL,
+  `barcode` varchar(50) DEFAULT NULL,
+  `currency_cd` varchar(20) DEFAULT NULL,
+  `item_price_buy` decimal(15,0) DEFAULT NULL,
+  `item_price` decimal(18,0) DEFAULT NULL,
+  `vat_tp` varchar(20) DEFAULT NULL,
+  `ppn` decimal(5,2) DEFAULT NULL,
+  `reorder_point` decimal(10,2) DEFAULT NULL,
+  `minimum_stock` decimal(10,2) DEFAULT NULL,
+  `maximum_stock` decimal(10,2) DEFAULT NULL,
+  `generic_st` char(1) DEFAULT NULL,
+  `active_st` char(1) DEFAULT NULL,
+  `inventory_st` char(1) DEFAULT NULL,
+  `tariftp_cd` varchar(20) DEFAULT NULL,
+  `last_user` varchar(20) DEFAULT NULL,
+  `last_update` datetime DEFAULT NULL,
+  PRIMARY KEY (`item_cd`),
+  KEY `unit_cd` (`unit_cd`),
+  KEY `type_cd` (`type_cd`),
+  CONSTRAINT `inv_item_master_ibfk_2` FOREIGN KEY (`type_cd`) REFERENCES `inv_item_type` (`type_cd`),
+  CONSTRAINT `inv_item_master_ibfk_1` FOREIGN KEY (`unit_cd`) REFERENCES `inv_unit` (`unit_cd`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+</tables>
+</canvas>
+</schemadesigner>

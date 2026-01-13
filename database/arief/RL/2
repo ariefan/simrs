@@ -1,0 +1,3 @@
+ALTER TABLE `rekam_medis`
+MODIFY COLUMN `rl_34`  varchar(4) NULL DEFAULT '' AFTER `rl_33`;
+

@@ -1,0 +1,1 @@
+<hr>TERBILANG : (#<?= $terbilang ?> #)<br><br><table class='pull-right' style='text-align: center;'><tr><td>Berau, <?= date('d-M-Y') ?></td></tr><tr><td height='100' style='vertical-align: top;'>Kasir</td></tr><tr><td>( <?= Yii::$app->user->identity->username ?> # )</td></tr></table>

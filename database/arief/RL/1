@@ -1,0 +1,2 @@
+INSERT INTO `rsberau2`.`unit_medis` (`medunit_cd`, `medunit_nm`, `medunit_tp`) VALUES ('POLIIGD', 'IGD', 'Poliklinik');
+INSERT INTO `rsberau2`.`unit_medis` (`medunit_cd`, `medunit_nm`, `medunit_tp`) VALUES ('POLIBIDAN', 'KEBIDANAN', 'Poliklinik');

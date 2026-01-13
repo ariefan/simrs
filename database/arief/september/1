@@ -1,0 +1,6 @@
+INSERT INTO `rsberau`.`tarif_general` (`tarif_general_id`, `tarif_nm`, `insurance_cd`, `kelas_cd`, `tarif`, `auto_add`, `medical_tp`, `account_cd`, `modi_id`, `modi_datetime`) VALUES ('G00000', 'Pendaftaran Pasien Baru', NULL, NULL, '15000', '1', NULL, 'AC099', NULL, '2017-09-09 21:33:29');
+
+
+ALTER TABLE `kunjungan`
+ADD COLUMN `catatan_keluar`  text NULL AFTER `jenis_keluar`;
+

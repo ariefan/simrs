@@ -1,0 +1,3 @@
+ALTER TABLE `bayar_obat`
+MODIFY COLUMN `obat_id`  varchar(20) NULL DEFAULT NULL AFTER `no_invoice`;
+

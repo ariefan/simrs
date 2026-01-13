@@ -1,0 +1,53 @@
+# Framework
+/vendor
+/runtime/*
+!/runtime/.gitignore
+/web/assets/*
+!/web/assets/.gitignore
+/web/storage/*
+!/web/storage/.gitignore
+
+# Config (Local/Private)
+/config/params-local.php
+/config/web-local.php
+/config/console-local.php
+.env
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+rsberau.sql
+database/*.xml
+
+# IDEs and Editors
+.idea
+.vscode
+.settings
+.project
+.buildpath
+nbproject
+*.sublime-project
+*.sublime-workspace
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Docker
+docker-compose.override.yml
+
+# Packages
+/node_modules
+composer.phar
+
+# Tests
+/tests/_output/*
+/tests/_support/_generated
+phpunit.phar
+/phpunit.xml
+
+# Misc
+*.swp
+*.bak
+*.tmp

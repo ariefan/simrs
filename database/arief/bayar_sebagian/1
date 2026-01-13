@@ -1,0 +1,2 @@
+ALTER TABLE `bayar`
+	ADD COLUMN `is_complete` TINYINT NULL DEFAULT '0' AFTER `card_no`;

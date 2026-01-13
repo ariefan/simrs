@@ -1,0 +1,1 @@
+"C:\Program Files\Java\jdk-12\bin\java.exe" -jar dwh-dev-0.0.1-SNAPSHOT.jar

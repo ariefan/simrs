@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    image: simrs-app
+    volumes:
+      - .:/var/www/html
+    environment:
+      - DB_HOST=db
+      - DB_NAME=simrs
+      - DB_USER=root
+      - DB_PASSWORD=secret
+    depends_on:
+      - db
+
+  web:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www/html
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
+
+  db:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_DATABASE=simrs
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./rsberau.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  db_data:

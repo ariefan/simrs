@@ -1,0 +1,3 @@
+ALTER TABLE `kunjungan`
+ADD COLUMN `dpjp`  int NULL AFTER `status_rm`;
+
