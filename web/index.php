@@ -7,6 +7,10 @@
 require(__DIR__ . '/../vendor/autoload.php');
 require(__DIR__ . '/../vendor/yiisoft/yii2/Yii.php');
 
+// Fix for asset-packagist
+Yii::setAlias('@bower', dirname(__DIR__) . '/vendor/bower-asset');
+Yii::setAlias('@npm', dirname(__DIR__) . '/vendor/npm-asset');
+
 $config = require(__DIR__ . '/../config/web.php');
 
 (new yii\web\Application($config))->run();
