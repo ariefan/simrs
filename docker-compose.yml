@@ -20,6 +20,7 @@ services:
       - db
     volumes:
       - assets_data:/var/www/html/web/assets
+    command: sh -c "chown -R www-data:www-data /var/www/html/web/assets && php-fpm"
 
   web:
     build:
