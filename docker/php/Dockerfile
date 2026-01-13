@@ -1,15 +1,16 @@
-FROM php:7.2-fpm
+FROM php:7.2-fpm-alpine
 
 # Install system dependencies
-RUN apt-get update && apt-get install -y \
-    libfreetype6-dev \
-    libjpeg62-turbo-dev \
+RUN apk add --no-cache \
+    freetype-dev \
+    libjpeg-turbo-dev \
     libpng-dev \
     libzip-dev \
-    libicu-dev \
+    icu-dev \
+    zip \
     unzip \
     git \
-    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install -j$(nproc) gd \
     && docker-php-ext-install pdo_mysql zip intl
 
