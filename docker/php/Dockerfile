@@ -20,6 +20,10 @@ COPY --from=composer:1 /usr/bin/composer /usr/bin/composer
 # Set working directory
 WORKDIR /var/www/html
 
+# Set Environment Variables
+ENV YII_ENV=prod
+ENV YII_DEBUG=false
+
 COPY . /var/www/html
 
 RUN composer install --no-dev --optimize-autoloader
