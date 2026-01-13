@@ -105,19 +105,5 @@ $config = [
 
 ];
 
-if (YII_ENV_DEV && class_exists('yii\debug\Module')) {
-    // configuration adjustments for 'dev' environment
-    $config['bootstrap'][] = 'debug';
-    $config['modules']['debug'] = [
-        'class' => 'yii\debug\Module',
-    ];
-
-    if (class_exists('yii\gii\Module')) {
-        $config['bootstrap'][] = 'gii';
-        $config['modules']['gii'] = [
-            'class' => 'yii\gii\Module',
-        ];
-    }
-}
 
 return $config;
