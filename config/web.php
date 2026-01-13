@@ -6,6 +6,10 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'timeZone' => 'Asia/Ujung_Pandang',
+    'aliases' => [
+        '@bower' => '@vendor/bower-asset',
+        '@npm'   => '@vendor/npm-asset',
+    ],
     'bootstrap' => ['log','AccessHistoryComp'],
     'components' => [
         // 'assetManager' => [
