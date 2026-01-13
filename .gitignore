@@ -18,7 +18,7 @@
 *.sql
 *.sqlite
 rsberau.sql
-database/*.xml
+/database/
 
 # IDEs and Editors
 .idea

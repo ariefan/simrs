@@ -1,2 +1,0 @@
-ALTER TABLE `rekam_medis`
-ADD COLUMN `tgl_periksa`  date NULL DEFAULT NULL AFTER `alergi_obat`;

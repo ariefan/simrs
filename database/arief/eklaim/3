@@ -1,4 +1,0 @@
-ALTER TABLE `pasien`
-ADD COLUMN `jenis_asuransi`  varchar(255) NULL AFTER `no_asuransi`,
-ADD COLUMN `no_asuransi`  varchar(20) NULL AFTER `pj_telpon`;
-

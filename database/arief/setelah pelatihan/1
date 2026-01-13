@@ -1,3 +1,0 @@
-ALTER TABLE `tindakan`
-ADD COLUMN `modi_id`  varchar(255) NULL AFTER `biaya_wajib`;
-
